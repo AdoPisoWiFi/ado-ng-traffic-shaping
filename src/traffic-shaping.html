@@ -1,0 +1,92 @@
+  <div class="row">
+    <div class="col-md-4">
+      <form name="prioForm">
+
+        <div class="form-group" ng-class="{'has-error': prioForm.$invalid}">
+          <label for="games_traffic_percent">How many percent of global bandwidth to allocate for prioritized ports?</label>
+
+          <div class="input-group">
+            <input type="number" name="games_traffic_percent" class="form-control" ng-model="$ctrl.settings.games_traffic_percent" min="1" max="99" required>
+            <div class="input-group-addon">%</div>
+          </div>
+
+          <span class="help-block" ng-show="prioForm.games_traffic_percent.$error.min">Minimum is 1%</span>
+          <span class="help-block" ng-show="prioForm.games_traffic_percent.$error.max">Maximum is 99%</span>
+          <span class="help-block" ng-show="prioForm.games_traffic_percent.$error.required">Required</span>
+
+        </div>
+        <save-config-btn config="{games_traffic_percent: $ctrl.settings.games_traffic_percent}" ng-disabled="prioForm.$invalid">
+          Save
+        </save-config-btn>
+      </form>
+    </div>
+  </div>
+
+  <hr>
+
+  <p>The ports listed in the table (no particular order) will have higher priority in the network traffic. This helps prevent lags in competitive games and applications.</p>
+
+  <a class="btn btn-primary" ng-click="$ctrl.addPort()">
+    <i class="glyphicon glyphicon-plus"></i>
+    Add New Port Priority
+  </a>
+  <hr>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Protocol</th>
+        <th>From port</th>
+        <th>To port</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-show="$ctrl.settings.port_priorities.length == 0">
+        <td colspan="5">
+          No port is prioritized.
+        </td>
+      </tr>
+
+      <tr ng-repeat="pp in $ctrl.settings.port_priorities" class="editable-row">
+        <td>
+          <span editable-select="pp.protocol" e-ng-options="p as p.toUpperCase() for p in $ctrl.protocols" e-name="protocol" e-form="rowform" e-required e-class="form-control">
+            {{pp.protocol | uppercase}}
+          </span>
+        </td>
+        <td>
+          <span editable-number="pp.port_from" e-name="port_from" e-form="rowform" e-required e-class="form-control">
+            {{pp.port_from}}
+          </span>
+        </td>
+        <td>
+          <span editable-number="pp.port_to" e-name="port_to" e-form="rowform" e-required e-class="form-control">
+            {{pp.port_to}}
+          </span>
+        </td>
+        <td>
+          <span editable-textarea="pp.desc" e-name="description" e-form="rowform" e-required e-class="form-control">
+            {{pp.desc}}
+          </span>
+        </td>
+        <td>
+          <form onbeforesave="$ctrl.updatePorts($index, $data)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="$ctrl.inserted === pp">
+            <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
+              Save
+            </button>
+            <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default editable-table-button btn-xs">
+              Cancel
+            </button>
+          </form>
+          <div class="buttons" ng-show="!rowform.$visible">
+            <button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">Edit</button>
+            <button class="btn btn-danger editable-table-button btn-xs" ng-click="$ctrl.removePort($index)">Delete</button>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+

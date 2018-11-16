@@ -1,0 +1,32 @@
+{
+  "name": "@adopisowifi/ng-traffic-shaping",
+  "version": "0.0.1",
+  "description": "Angular.js 1.x module for changing bandwidth limiter settings",
+  "main": "dist/ado-ng-traffic-shaping.js",
+  "scripts": {
+    "publish-package": "git push && git push --tags && npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdoPisoWiFi/ado-ng-traffic-shaping.git"
+  },
+  "keywords": [
+    "adopisowifi",
+    "timer-settings"
+  ],
+  "author": "AdoPisoWiFi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdoPisoWiFi/ado-ng-traffic-shaping/issues"
+  },
+  "homepage": "https://github.com/AdoPisoWiFi/ado-ng-traffic-shaping#readme",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-angular-templatecache": "^2.2.5",
+    "gulp-concat": "^2.6.1"
+  },
+  "dependencies": {
+    "@adopisowifi/save-config-btn": "^1.0.10"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "ado-ng-traffic-shaping",
+  "description": "Angular.js 1.x module for changing traffic shaping settings",
+  "main": "./dist/ado-ng-traffic-shaping.js",
+  "authors": [
+    "AdoPisoWiFi"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "adopisowifi",
+    "timer-settings"
+  ],
+  "homepage": "https://github.com/AdoPisoWiFi/ado-ng-traffic-shaping",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ado-save-config-btn": "^1.0.3"
+  }
+}
