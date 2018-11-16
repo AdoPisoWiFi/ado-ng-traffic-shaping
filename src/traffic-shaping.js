@@ -27,17 +27,20 @@
 
         $ctrl.inserted = null;
 
-        adoConfigService.get()
+        $ctrl.device = $ctrl.device || {};
+
+        adoConfigService.get({id: $ctrl.device.id})
           .then(function (res) {
             $ctrl.settings = res.data;
           });
 
         function update(ports) {
+
           ports = ports.filter(function (p) {
             return p.protocol && p.port_from && p.port_to;
           });
 
-          return adoConfigService.update({port_priorities: ports})
+          return adoConfigService.update({port_priorities: ports}, {id: $ctrl.device.id})
             .then(function (res) {
               $ctrl.settings = res.data;
               return true;
@@ -65,7 +68,7 @@
         };
 
         $ctrl.removePort = function (i) {
-          if (window.confirm('Are you sure?')) {
+          if ($window.confirm('Are you sure?')) {
             var ports = angular.copy($ctrl.settings.port_priorities);
             ports.splice(i, 1);
             return update(ports);
