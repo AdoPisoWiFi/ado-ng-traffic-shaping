@@ -15,7 +15,7 @@
           <span class="help-block" ng-show="prioForm.games_traffic_percent.$error.required">Required</span>
 
         </div>
-        <save-config-btn config="{games_traffic_percent: $ctrl.settings.games_traffic_percent}" ng-disabled="prioForm.$invalid">
+        <save-config-btn config="{games_traffic_percent: $ctrl.settings.games_traffic_percent}" ng-disabled="prioForm.$invalid" device="$ctrl.device">
           Save
         </save-config-btn>
       </form>
