@@ -39,7 +39,12 @@ angular.module('ado.traffic-shaping.tpls', []).run(['$templateCache', function($
 
           ports = ports.filter(function (p) {
             return p.protocol && p.port_from && p.port_to;
-          });
+          })
+            .map(function(p) {
+              if (p.description)
+                delete p.description;
+              return p;
+            });
 
           return adoConfigService.update({port_priorities: ports}, {id: $ctrl.device.id})
             .then(function (res) {
