@@ -1,6 +1,6 @@
 {
   "name": "@adopisowifi/ng-traffic-shaping",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Angular.js 1.x module for changing bandwidth limiter settings",
   "main": "dist/ado-ng-traffic-shaping.js",
   "scripts": {
